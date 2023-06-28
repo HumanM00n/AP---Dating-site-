@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body{
+        background-color: blanchedalmond;
+    }
+    #container {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .moving-image {
+      position: absolute;
+      top: 0;
+      transition: transform 2s;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="leftImage" class="moving-image" src="../img/heart.png">
+    <img id="rightImage" class="moving-image" src="../img/match.png">
+  </div>
+
+  <script>
+    
+    const leftImage = document.getElementById('leftImage');
+    const rightImage = document.getElementById('rightImage');
+
+   
+    const containerWidth = document.getElementById('container').offsetWidth;
+    const finalPosition = (containerWidth / 2) - (leftImage.width / 2) - (rightImage.width / 2);
+
+   
+    leftImage.style.transform = `translateX(-${containerWidth}px)`;
+    leftImage.addEventListener('transitionend', () => {
+      leftImage.style.transform = `translateX(${finalPosition}px)`;
+    });
+
+    
+    rightImage.style.transform = `translateX(${containerWidth}px)`;
+    rightImage.addEventListener('transitionend', () => {
+      rightImage.style.transform = `translateX(${finalPosition}px)`;
+    });
+  </script>
+</body>
+</html>
