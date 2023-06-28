@@ -1,0 +1,41 @@
+<!doctype>
+<html lang="fr">
+
+<style>
+form {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+input[type="submit"] {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+</style>
+
+<!-- Selection des photos côtés utilisateur -->
+<form action="traitement.php" method="post" enctype="multipart/form-data">
+  <h3>Parce qu'une belle image vaut bien plus que des mots, ajoute des photos de toi sur ton profil !</h3>
+  <input type="file" id="photos" name="photos[]" accept="image/*" multiple><br><br>
+  <input type="submit" value="Enregistrer">
+</form>
+
+
+<!-- Verification des 5 photos maximum -->
+<script>
+  document.getElementById('photos').addEventListener('change', function() {
+    var files = this.files;
+    if (files.length > 5) {
+      alert("Vous ne pouvez sélectionner que 5 photos maximum.");
+      this.value = null; // Réinitialiser la valeur du champ de sélection de fichier
+    }
+  });
+</script>
+
+</head>
