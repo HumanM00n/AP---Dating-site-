@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+   <title>Formulaire d'inscription</title>
+</head>
+
+
+<!-- STYLE CSS -->
+<style>
+body {
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      form {
+         border: 1px solid #ccc;
+         border-radius: 10px;
+         padding: 20px;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="tel"],
+      input[type="email"],
+      input[type="checkbox"],
+      input[type="radio"] {
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         padding: 5px;
+      }
+
+      input[type="submit"] {
+         border: none;
+         border-radius: 5px;
+         padding: 10px 20px;
+         background-color: #007bff;
+         color: #fff;
+         cursor: pointer;
+      }
+</style>
+
+
+
+
+
+<!-- Body -->
+<body>
+   <h2>Je m'inscris</h2>
+  
+<!-- Formulaire d'inscription : informations types -->
+   <form action="traitement.php" method="post">
+     
+     <h3>Qui suis-je ?</h3>
+      <label for="prenom">Mon prénom*</label> 
+      <input type="text" id="prenom" name="prenom" required><br><br> <!-- champs obligatoire -->
+
+      <label for="nom">Mon nom* :</label>
+      <input type="text" id="nom" name="nom" required><br><br> <!-- champs obligatoire -->
+     
+     <label for="pseudo">Mon pseudo </label>
+      <input type="text" id="prenom" name="prenom" required> <!-- champs obligatoire -->
+     <h6>C'est ainsi que les autres te verront</h6>
+     <br>
+     
+      <label>Je suis ... </label><br>
+      <input type="radio" id="homme" name="sexe" value="homme">
+      <label for="homme">Un homme</label><br>
+
+      <input type="radio" id="femme" name="sexe" value="femme">
+      <label for="femme">Une femme</label><br>
+
+      <input type="radio" id="nonPrecise" name="sexe" value="nonPrecise">
+      <label for="nonPrecise">Je préfère ne pas préciser</label><br><br>
+
+      <label for="dateNaissance">Ma date de naissance :</label>
+      <input type="date" id="dateNaissance" name="dateNaissance" required><br><br>
+
+      <label for="telephone">Mon numéro de téléphone* :</label>
+      <input type="tel" id="telephone" name="telephone" required><br><br>
+
+      <label for="email">Mon adresse e-mail* :</label>
+      <input type="email" id="email" name="email" required><br>
+     
+      <h6><p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.</p></h6><br>
+     
+<!-- Qu'est-ce qui est recherché par la personne -->
+     <h3>Qu'est-ce que je recherche ? </h3>
+
+      <label>J'aimerai rencontrer ... </label><br>
+      <input type="checkbox" id="rechercheHomme" name="recherche[]" value="homme">
+      <label for="rechercheHomme">Un homme</label><br>
+
+      <input type="checkbox" id="rechercheFemme" name="recherche[]" value="femme">
+      <label for="rechercheFemme">Une femme</label><br>
+
+      <input type="checkbox" id="rechercheNonPrecise" name="recherche[]" value="nonPrecise">
+      <label for="rechercheNonPrecise">Peu m'importe, j'aime tout le monde !</label><br><br>
+
+<!-- Bouton d'inscription au site web -->
+      <input type="submit" value="Continuer">
+   </form>
+</body>
+
+
+</html>
