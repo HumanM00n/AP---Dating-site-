@@ -1,0 +1,75 @@
+#conversation {
+    width: 400px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9; /* Couleur de fond pour la boîte de chat */
+  }
+  
+  #profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f9c2cd; /* Couleur du rond */
+    margin-bottom: 5px;
+  }
+  
+  #profile-name {
+    font-weight: bold;
+  }
+  
+  #messages {
+    flex: 1;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+  }
+  
+  #input-container {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc; /* Ajout de la bordure pour la boîte d'envoi */
+  }
+  
+  #message-input {
+    flex: 1;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+  }
+  
+  #send-button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: #f9c2cd; /* Couleur du bouton */
+    color: #fff;
+    border: none;
+  }
+  
+  .bubble {
+    background-color: #f9c2cd; /* Couleur de la bulle */
+    color: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+    max-width: 70%;
+    align-self: flex-start; /* Positionnement légèrement vers la gauche */
+  }
+  
+  .bubble.sent {
+    align-self: flex-end;
+  }
