@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <form class="rounded-border" action="process_form.php" method="POST">
+        <h2>Quels sont mes centres d'intérêts ? </h2>
+        
+        <div class="checkbox-row">
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="sport"> Sport
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="jeuxvideo"> Jeux vidéo
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="cuisine"> Cuisine
+            </label>
+        </div>
+        
+        <div class="checkbox-row">
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="voyager"> Voyager
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="dessiner"> Dessiner
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="lire"> Lire
+            </label>
+        </div>
+        
+        <div class="checkbox-row">
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="sortir"> Sortir avec des amis
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="cinema"> Aller au cinéma
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="maison"> Netflix and chill
+            </label>
+        </div>
+        
+        <input class="submit-button" type="submit" value="Continuer">
+    </form>
+</body>
+</html>
