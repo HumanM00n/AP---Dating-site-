@@ -1,0 +1,80 @@
+discussion match
+
+--------- HTML ---------
+
+<div id="conversation">
+  <div id="messages">
+    <!-- Les messages seront ajoutés ici dynamiquement -->
+  </div>
+  <div id="input-container">
+    <input type="text" id="message-input" placeholder="Saisissez votre message...">
+    <button id="send-button">Envoyer</button>
+  </div>
+</div>
+
+
+
+--------- CSS ---------
+
+#conversation {
+    width: 400px;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #messages {
+    flex: 1;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+  }
+  
+  #input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  #message-input {
+    flex: 1;
+    padding: 5px;
+  }
+  
+  #send-button {
+    padding: 5px 10px;
+  }
+
+  --------- Java Script ---------
+
+  // Récupération des éléments du DOM
+const messagesContainer = document.getElementById('messages');
+const messageInput = document.getElementById('message-input');
+const sendButton = document.getElementById('send-button');
+
+// Gestion de l'envoi du message
+function sendMessage() {
+  const message = messageInput.value.trim();
+
+  if (message !== '') {
+    appendMessage('Moi', message); // Ajoute le message à la conversation
+    messageInput.value = ''; // Efface le contenu de l'input
+  }
+}
+
+sendButton.addEventListener('click', sendMessage);
+
+messageInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    sendMessage();
+    event.preventDefault(); // Empêche le comportement par défaut du "retour à la ligne" dans un champ de saisie
+  }
+});
+
+// Fonction pour ajouter un message à la conversation
+function appendMessage(sender, text) {
+  const messageElement = document.createElement('div');
+  messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  messagesContainer.appendChild(messageElement);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Fait défiler automatiquement vers le bas
+}
