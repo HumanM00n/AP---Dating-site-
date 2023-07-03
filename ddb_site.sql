@@ -15,7 +15,7 @@ CREATE TABLE Utilisateur(
    Genre VARCHAR(20) NOT NULL,
    Email INT NOT NULL,
    Téléphone VARCHAR(10) NOT NULL,
-   Photo VARCHAR(50),
+   Photo BLOB,
    Centre_interet VARCHAR(100),
    Pays_visite VARCHAR(50),
    Pays_a_visiter VARCHAR(50) NOT NULL,
