@@ -1,0 +1,24 @@
+/* Style pour les bordures arrondies */
+.rounded-border {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    display: inline-block;
+}
+
+/* Style pour les cases à cocher */
+.checkbox-label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin-right: 10px;
+}
+
+/* Style pour le bouton de soumission */
+.submit-button {
+    margin-top: 20px;
+}
+
