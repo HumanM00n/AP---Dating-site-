@@ -40,8 +40,6 @@ form {
 } 
 
 
-
-
 .checkbox-group label {
     display: inline-block;
     margin-right: 10px;
@@ -57,14 +55,6 @@ form {
     display: flex;
     align-items: center;
 }
-
-
-
-
-
-
-
-
 
 
 input[type="text"],
