@@ -1,1 +1,89 @@
+CSS DU FORMUALIRE D'INSCRIPTION
+---------------------------------------------------------------
 
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #fdeada;
+}
+
+
+.picture{
+    display: block;
+    position: relative;
+    margin-left: 45px;
+    padding: 10%;
+    float: left;
+    border: 1rem;
+    width: 20%;
+    height: 200px;    
+}
+
+form {
+    background-color: #ebd8c7;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-left: 600px;
+    padding: 20px;  
+    width: auto;
+}
+
+
+.informations label input {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+
+.informations input [type="checkbox"] {
+    vertical-align: middle;
+} 
+
+
+
+
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.checkbox-group input [type="checkbox"] {
+    vertical-align: middle;
+}
+
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+input[type="checkbox"],
+input[type="radio"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type="submit"] {
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
