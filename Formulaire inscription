@@ -2,72 +2,70 @@
 <html lang="fr">
 
 <head>
-   <title>Formulaire d'inscription</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="svg/male-outline.svg">
+  <link rel="stylesheet" href="svg/female-outline.svg">
+  <link rel="stylesheet" href="css/inscription.css">
+  <link rel="icon" href="img/Wallpaper.png" />
+  <title>INSCRIPTION</title>
 </head>
 
 
-<!-- STYLE CSS -->
-<style>
-body {
-         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      }
-
-      form {
-         border: 1px solid #ccc;
-         border-radius: 10px;
-         padding: 20px;
-      }
-
-      input[type="text"],
-      input[type="date"],
-      input[type="tel"],
-      input[type="email"],
-      input[type="checkbox"],
-      input[type="radio"] {
-         border: 1px solid #ccc;
-         border-radius: 5px;
-         padding: 5px;
-      }
-
-      input[type="submit"] {
-         border: none;
-         border-radius: 5px;
-         padding: 10px 20px;
-         background-color: #007bff;
-         color: #fff;
-         cursor: pointer;
-      }
-</style>
-
-
-
-
-
 <!-- Body -->
+
 <body>
-   <h2>Je m'inscris</h2>
+  <center>
+    <h2>JE M'INSCRIT</h2>
+  </center>
+
+  <!-- ----------------------------------PICTURE-------------------------------------- -->
+  <!-- Selection des photos côtés utilisateur -->
+  <form class="picture" action="traitement.php" method="post" enctype="multipart/form-data">
+    <h3>Parce qu'une belle image vaut bien plus que des mots, ajoute des photos de toi sur ton profil !</h3>
+    <input type="file" id="photos" name="photos[]" accept="image/*" multiple><br><br>
+    <input type="submit" value="Enregistrer">
+  </form>
+  <script>
+    document.getElementById('photos').addEventListener('change', function () {
+      var files = this.files;
+      if (files.length > 5) {
+        alert("Vous ne pouvez sélectionner que 5 photos maximum.");
+        this.value = null; // Réinitialiser la valeur du champ de sélection de fichier
+      }
+    });
+  </script>
+
+
+  <!-- Verification des 5 photos maximum -->
   
-<!-- Formulaire d'inscription : informations types -->
-   <form action="traitement.php" method="post">
-     
-     <h3>Qui suis-je ?</h3>
-      <label for="prenom">Mon prénom*</label> 
+
+  <!-- Formulaire d'inscription : informations types -->
+  <form action="traitement.php" method="post">
+
+    <h3>Qui suis-je ?</h3>
+    <div class="identifiants">
+      <label for="prenom">Mon prénom*</label>
       <input type="text" id="prenom" name="prenom" required><br><br> <!-- champs obligatoire -->
 
       <label for="nom">Mon nom* :</label>
       <input type="text" id="nom" name="nom" required><br><br> <!-- champs obligatoire -->
-     
-     <label for="pseudo">Mon pseudo </label>
-      <input type="text" id="prenom" name="prenom" required> <!-- champs obligatoire -->
-     <h6>C'est ainsi que les autres te verront</h6>
-     <br>
-     
-      <label>Je suis ... </label><br>
-      <input type="radio" id="homme" name="sexe" value="homme">
-      <label for="homme">Un homme</label><br>
 
+      <label for="pseudo">Mon pseudo </label>
+      <input type="text" id="prenom" name="prenom" required> <!-- champs obligatoire -->
+      <h6>C'est ainsi que les autres te verront</h6>
+    </div>
+    <br>
+
+    <h3>Qui je suis ?</h3>
+    <div class="informations">
+
+      <input type="radio" id="homme" name="sexe" value="homme">
+      <label for="homme">Un homme</label>
+      
       <input type="radio" id="femme" name="sexe" value="femme">
-      <label for="femme">Une femme</label><br>
+      <label for="femme">Une femme</label>
 
       <input type="radio" id="nonPrecise" name="sexe" value="nonPrecise">
       <label for="nonPrecise">Je préfère ne pas préciser</label><br><br>
@@ -80,12 +78,16 @@ body {
 
       <label for="email">Mon adresse e-mail* :</label>
       <input type="email" id="email" name="email" required><br>
-     
-      <h6><p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.</p></h6><br>
-     
-<!-- Qu'est-ce qui est recherché par la personne -->
-     <h3>Qu'est-ce que je recherche ? </h3>
+    </div>
 
+    <h6>
+      <p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.
+      </p>
+    </h6><br>
+
+    <!-- Qu'est-ce qui est recherché par la personne -->
+    <h3>Qu'est-ce que je recherche ?</h3>
+    <div class="checkbox-group">
       <label>J'aimerai rencontrer ... </label><br>
       <input type="checkbox" id="rechercheHomme" name="recherche[]" value="homme">
       <label for="rechercheHomme">Un homme</label><br>
@@ -95,10 +97,12 @@ body {
 
       <input type="checkbox" id="rechercheNonPrecise" name="recherche[]" value="nonPrecise">
       <label for="rechercheNonPrecise">Peu m'importe, j'aime tout le monde !</label><br><br>
+    </div>
 
-<!-- Bouton d'inscription au site web -->
-      <input type="submit" value="Continuer">
-   </form>
+    <!-- Bouton d'inscription au site web -->
+    <input type="submit" value="Continuer">
+  </form>
+  
 </body>
 
 
