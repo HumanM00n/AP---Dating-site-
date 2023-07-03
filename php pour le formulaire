@@ -1,0 +1,44 @@
+<?php
+// Vérifier si le formulaire a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les valeurs du formulaire
+    $prenom = $_POST["prenom"];
+    $nom = $_POST["nom"];
+    $pseudo = $_POST["pseudo"];
+    $sexe = $_POST["sexe"];
+    $dateNaissance = $_POST["dateNaissance"];
+    $telephone = $_POST["telephone"];
+    $email = $_POST["email"];
+    $recherche = isset($_POST["recherche"]) ? $_POST["recherche"] : array();
+
+    // Connexion à la base de données
+    $servername = "localhost";
+    $username = "votre_nom_utilisateur";
+    $password = "votre_mot_de_passe";
+    $dbname = "votre_base_de_donnees";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Vérifier la connexion
+    if ($conn->connect_error) {
+        die("Erreur de connexion à la base de données : " . $conn->connect_error);
+    }
+
+    // Préparer et exécuter la requête SQL pour insérer les données dans la table Utilisateur
+    $sql = "INSERT INTO Utilisateur (Nom, Prenom, Pseudo, Genre, DateNaissance, Telephone, Email, Recherche) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssss", $nom, $prenom, $pseudo, $sexe, $dateNaissance, $telephone, $email, implode(", ", $recherche));
+    $stmt->execute();
+
+    // Vérifier si l'insertion a réussi
+    if ($stmt->affected_rows > 0) {
+        echo "Les informations ont été enregistrées avec succès dans la base de données.";
+    } else {
+        echo "Erreur lors de l'enregistrement des informations dans la base de données.";
+    }
+
+    // Fermer la connexion à la base de données
+    $stmt->close();
+    $conn->close();
+}
+?>
