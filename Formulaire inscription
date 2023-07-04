@@ -42,7 +42,7 @@
   
 
   <!-- Formulaire d'inscription : informations types -->
-  <form action="traitement.php" method="post">
+  <form action="traitement.php" method="POST"> // attention ici il y a le nom de fichier qui permet de récuperer les donnée saisie dans le formualaire 
 
     <h3>Qui suis-je ?</h3>
     <div class="identifiants">
@@ -53,7 +53,7 @@
       <input type="text" id="nom" name="nom" required><br><br> <!-- champs obligatoire -->
 
       <label for="pseudo">Mon pseudo </label>
-      <input type="text" id="prenom" name="prenom" required> <!-- champs obligatoire -->
+      <input type="text" id="pseudo" name="pseudo" required> <!-- champs obligatoire -->
       <h6>C'est ainsi que les autres te verront</h6>
     </div>
     <br>
@@ -85,19 +85,7 @@
       </p>
     </h6><br>
 
-    <!-- Qu'est-ce qui est recherché par la personne -->
-    <h3>Qu'est-ce que je recherche ?</h3>
-    <div class="checkbox-group">
-      <label>J'aimerai rencontrer ... </label><br>
-      <input type="checkbox" id="rechercheHomme" name="recherche[]" value="homme">
-      <label for="rechercheHomme">Un homme</label><br>
-
-      <input type="checkbox" id="rechercheFemme" name="recherche[]" value="femme">
-      <label for="rechercheFemme">Une femme</label><br>
-
-      <input type="checkbox" id="rechercheNonPrecise" name="recherche[]" value="nonPrecise">
-      <label for="rechercheNonPrecise">Peu m'importe, j'aime tout le monde !</label><br><br>
-    </div>
+    
 
     <!-- Bouton d'inscription au site web -->
     <input type="submit" value="Continuer">
