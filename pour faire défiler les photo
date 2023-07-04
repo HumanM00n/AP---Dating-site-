@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #container {
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    #slider {
+      display: flex;
+      transition: transform 0.5s;
+    }
+
+    .slide {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    #prevButton, #nextButton {
+      width: 50px;
+      height: 50px;
+      background-color: gray;
+      color: white;
+      font-size: 24px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="slider">
+      <img class="slide" src="jb1.jpg">
+      <img class="slide" src="jb2.jpg">
+      <img class="slide" src="jb3.jpg">
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button id="prevButton">&lt;</button>
+    <button id="nextButton">&gt;</button>
+  </div>
+
+  <script>
+    // Récupération des éléments HTML
+    const slider = document.getElementById('slider');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const slides = document.getElementsByClassName('slide');
+
+    // Variables de suivi de l'index
+    let currentIndex = 0;
+
+    // Gestionnaire de clic pour le bouton précédent
+    prevButton.addEventListener('click', () => {
+      currentIndex = Math.max(currentIndex - 1, 0);
+      updateSliderPosition();
+    });
+
+    // Gestionnaire de clic pour le bouton suivant
+    nextButton.addEventListener('click', () => {
+      currentIndex = Math.min(currentIndex + 1, slides.length - 1);
+      updateSliderPosition();
+    });
+
+    // Mise à jour de la position du slider
+    function updateSliderPosition() {
+      const slideWidth = slides[0].offsetWidth;
+      const translateX = -currentIndex * slideWidth;
+      slider.style.transform = `translateX(${translateX}px)`;
+    }
+  </script>
+</body>
+</html>
