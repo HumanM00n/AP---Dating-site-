@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    background-image: url(../img/Wallpaper.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 790px;
+    width: 90%;
+}
+
+
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+
+h1 {
+    position: absolute;
+    font-size: -webkit-xxx-large;
+    text-align: start;
+    top: 40%;
+    left: 21%;
+    color: #924300d4;
+}
+
+
+.icon {
+    cursor: pointer;
+    color: red;
+}
+
+
+.lbl_1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: x-large;
+    margin-top: -10%;
+    margin-left: 5%;
+    color: blue;
+
+}
+
+
+
+.lbl_2 {
+    position: relative;
+    font-size: x-large;
+    color: blue;
+    margin-top: 20%;
+    margin-left: -15%;
+    left: 66%;
+}
+
+
+
+.input-connect {
+    cursor: pointer;
+    border: solid 1px black;
+    padding: 10px 20px;
+    margin-top: 22%;
+    margin-left: 48%;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #924300d4;
+    color: white;
+}
+
+
+
+.input-connect:hover {
+    background-color: #168b96;
+}
