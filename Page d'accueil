@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/Wallpaper.png"/>
+    <link rel="stylesheet" href="css/style.css">
+    <title></title>
+</head>
+
+<body>
+
+    <div class="container">
+        <p class="lbl_1">VOYAGE AVEC MOI</p>
+        <span class="icon">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+        </span>
+        <p class="lbl_2">Plus de 100 voyages organisé</p>
+        <center>
+            <h1>PREMIER SITE DE RENCONTRE ET<br>DE VOYAGE</h1>
+        </center>
+    </div>
+    <a href="Inscription.php"><input class="input-connect" type="submit" value="Se Connecter"></a>
+
+
+    <footer>
+    </footer>
+
+</body>
+
+</html>
