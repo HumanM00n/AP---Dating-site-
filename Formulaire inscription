@@ -45,7 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Exécution de la requête
         $stmt->execute();
 
-        echo "Inscription réussie !";
+        // Redirection vers la page profil.php
+        header("Location: profil.php");
+        exit(); // Assurez-vous d'utiliser exit() après la redirection pour arrêter l'exécution du script
+
     } catch (PDOException $e) {
         echo "Erreur lors de l'inscription : " . $e->getMessage();
     }
@@ -54,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = null;
 }
 ?>
+
 
 
 <!doctype html>
