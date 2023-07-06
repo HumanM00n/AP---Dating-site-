@@ -18,7 +18,7 @@ CREATE TABLE Discussion(
    ID_discussion VARCHAR(200),
    Contenu_message VARCHAR(200),
    ID_destination VARCHAR(200) NOT NULL,
-   PRIMARY KEY(ID_discussion),
+   PRIMARY KEY(ID_discussion)
   );
 
 CREATE TABLE Matchs(
