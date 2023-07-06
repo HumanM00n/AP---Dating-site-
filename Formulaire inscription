@@ -1,8 +1,60 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "siterencontre";
+
+    try {
+        // Connexion à la base de données avec PDO
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Récupération des données du formulaire
+        $prenom = $_POST['prenom'];
+        $nom = $_POST['nom'];
+        $pseudo = $_POST['pseudo'];
+        $sexe = $_POST['sexe'];
+        $dateNaissance = $_POST['dateNaissance'];
+        $telephone = $_POST['telephone'];
+        $email = $_POST['email'];
+        $centresInteret = implode(", ", $_POST['interests']); // Convertit les centres d'intérêt en une chaîne de caractères séparée par des virgules
+
+        // Construction de la requête SQL d'insertion
+        $sql = "INSERT INTO Utilisateur (Nom, Prenom, Pseudo, Genre, DateNaissance, Telephone, Email, Centre_interet)
+                VALUES (:nom, :prenom, :pseudo, :sexe, :dateNaissance, :telephone, :email, :centresInteret)";
+
+        // Préparation de la requête
+        $stmt = $conn->prepare($sql);
+
+        // Liaison des valeurs des paramètres
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':pseudo', $pseudo);
+        $stmt->bindParam(':sexe', $sexe);
+        $stmt->bindParam(':dateNaissance', $dateNaissance);
+        $stmt->bindParam(':telephone', $telephone);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':centresInteret', $centresInteret);
+
+        // Exécution de la requête
+        $stmt->execute();
+
+        echo "Inscription réussie !";
+    } catch (PDOException $e) {
+        echo "Erreur lors de l'inscription : " . $e->getMessage();
+    }
+
+    // Fermeture de la connexion à la base de données
+    $conn = null;
+}
+?>
+
+
 <!doctype html>
 <html lang="fr">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="svg/male-outline.svg">
@@ -12,58 +64,32 @@
   <title>INSCRIPTION</title>
 </head>
 
-
-<!-- Body -->
-
 <body>
   <center>
-    <h2>JE M'INSCRIT</h2>
+    <h2>JE M'INSCRIS</h2>
   </center>
 
-  <!-- ----------------------------------PICTURE-------------------------------------- -->
-  <!-- Selection des photos côtés utilisateur -->
-  <form class="picture" action="traitement.php" method="post" enctype="multipart/form-data">
-    <h3>Parce qu'une belle image vaut bien plus que des mots, ajoute des photos de toi sur ton profil !</h3>
-    <input type="file" id="photos" name="photos[]" accept="image/*" multiple><br><br>
-    <input type="submit" value="Enregistrer">
-  </form>
-  <script>
-    document.getElementById('photos').addEventListener('change', function () {
-      var files = this.files;
-      if (files.length > 5) {
-        alert("Vous ne pouvez sélectionner que 5 photos maximum.");
-        this.value = null; // Réinitialiser la valeur du champ de sélection de fichier
-      }
-    });
-  </script>
-
-
-  <!-- Verification des 5 photos maximum -->
-  
-
-  <!-- Formulaire d'inscription : informations types -->
-  <form action="traitement.php" method="POST"> // attention ici il y a le nom de fichier qui permet de récuperer les donnée saisie dans le formualaire 
-
+  <!-- Formulaire d'inscription -->
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
     <h3>Qui suis-je ?</h3>
     <div class="identifiants">
       <label for="prenom">Mon prénom*</label>
-      <input type="text" id="prenom" name="prenom" required><br><br> <!-- champs obligatoire -->
+      <input type="text" id="prenom" name="prenom" required><br><br>
 
       <label for="nom">Mon nom* :</label>
-      <input type="text" id="nom" name="nom" required><br><br> <!-- champs obligatoire -->
+      <input type="text" id="nom" name="nom" required><br><br>
 
-      <label for="pseudo">Mon pseudo </label>
-      <input type="text" id="pseudo" name="pseudo" required> <!-- champs obligatoire -->
-      <h6>C'est ainsi que les autres te verront</h6>
+      <label for="pseudo">Mon pseudo</label>
+      <input type="text" id="pseudo" name="pseudo" required><br>
+      <h6>C'est ainsi queles autres te verront</h6>
     </div>
     <br>
 
     <h3>Qui je suis ?</h3>
     <div class="informations">
-
       <input type="radio" id="homme" name="sexe" value="homme">
       <label for="homme">Un homme</label>
-      
+
       <input type="radio" id="femme" name="sexe" value="femme">
       <label for="femme">Une femme</label>
 
@@ -79,19 +105,273 @@
       <label for="email">Mon adresse e-mail* :</label>
       <input type="email" id="email" name="email" required><br>
     </div>
+    <h2> Mes centres d'interet</h2>
+    <div class="checkbox-row">
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="sport"> Sport
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="jeuxvideo"> Jeux vidéo
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="cuisine"> Cuisine
+            </label>
+        </div>
+        
+        <div class="checkbox-row">
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="voyager"> Voyager
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="dessiner"> Dessiner
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="lire"> Lire
+            </label>
+        </div>
+        
+        <div class="checkbox-row">
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="sortir"> Sortir avec des amis
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="cinema"> Aller au cinéma
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="interests[]" value="maison"> Netflix and chill
+            </label>
+        </div>
+        
+    <h2>Sélectionne un continent que tu aimerais visiter avec ton ou ta futur(e) partenaire</h2>
+
+      <label for="continent">J'aimerai voyager en ...</label><br>
+      <img class="continent-image" src="europe.jpg" alt="Europe" onclick="selectContinent('europe')">
+      <img class="continent-image" src="afrique.jpg" alt="Afrique" onclick="selectContinent('afrique')">
+      <img class="continent-image" src="amerique.jpg" alt="Amérique" onclick="selectContinent('amerique')">
+      <img class="continent-image" src="asie.jpg" alt="Asie" onclick="selectContinent('asie')">
+      <br><br>
+
+      <label for="pays">Quel pays aimerais-tu absolument visiter ...</label><br>
+      <select id="pays" name="pays[]" multiple>
+        
+         <!-- Europe -->
+        <option class="europe" value="Albanie">Albanie</option>
+        <option class="europe" value="Allemagne">Allemagne</option>
+        <option class="europe" value="Andorre">Andorre</option>
+        <option class="europe" value="Arménie">Arménie</option>
+        <option class="europe" value="Autriche">Autriche</option>
+        <option class="europe" value="Azerbaïdjan">Azerbaïdjan</option>
+        <option class="europe" value="Belgique">Belgique</option>
+        <option class="europe" value="Biélorussie">Biélorussie</option>
+        <option class="europe" value="Bosnie-Herzégovine">Bosnie-Herzégovine</option>
+        <option class="europe" value="Bulgarie">Bulgarie</option>
+        <option class="europe" value="Chypre">Chypre</option>
+        <option class="europe" value="Croatie">Croatie</option>
+        <option class="europe" value="Danemark">Danemark</option>
+        <option class="europe" value="Espagne">Espagne</option>
+        <option class="europe" value="Estonie">Estonie</option>
+        <option class="europe" value="Finlande">Finlande</option>
+        <option class="europe" value="France">France</option>
+        <option class="europe" value="Géorgie">Géorgie</option>
+        <option class="europe" value="Grèce">Grèce</option>
+        <option class="europe" value="Hongrie">Hongrie</option>
+        <option class="europe" value="Irlande">Irlande</option>
+        <option class="europe" value="Islande">Islande</option>
+        <option class="europe" value="Italie">Italie</option>
+        <option class="europe" value="Kazakhstan">Kazakhstan</option>
+        <option class="europe" value="Kosovo">Kosovo</option>
+        <option class="europe" value="Lettonie">Lettonie</option>
+        <option class="europe" value="Liechtenstein">Liechtenstein</option>
+        <option class="europe" value="Lituanie">Lituanie</option>
+        <option class="europe" value="Luxembourg">Luxembourg</option>
+        <option class="europe" value="Macédoine du Nord">Macédoine du Nord</option>
+        <option class="europe" value="Malte">Malte</option>
+        <option class="europe" value="Moldavie">Moldavie</option>
+        <option class="europe" value="Monaco">Monaco</option>
+        <option class="europe" value="Monténégro">Monténégro</option>
+        <option class="europe" value="Norvège">Norvège</option>
+        <option class="europe" value="Pays-Bas">Pays-Bas</option>
+        <option class="europe" value="Pologne">Pologne</option>
+        <option class="europe" value="Portugal">Portugal</option>
+        <option class="europe" value="République tchèque">République tchèque</option>
+        <option class="europe" value="Roumanie">Roumanie</option>
+        <option class="europe" value="Royaume-Uni">Royaume-Uni</option>
+        <option class="europe" value="Russie">Russie</option>
+        <option class="europe" value="Saint-Marin">Saint-Marin</option>
+        <option class="europe" value="Serbie">Serbie</option>
+        <option class="europe" value="Slovaquie">Slovaquie</option>
+        <option class="europe" value="Slovénie">Slovénie</option>
+        <option class="europe" value="Suède">Suède</option>
+        <option class="europe" value="Suisse">Suisse</option>
+        <option class="europe" value="Ukraine">Ukraine</option>
+        <option class="europe" value="Vatican">Vatican (Cité du Vatican)</option>
+
+         
+
+         <!-- Afrique -->
+        <option class="afrique" value="Afrique du Sud">Afrique du Sud</option>
+        <option class="afrique" value="Algérie">Algérie</option>
+        <option class="afrique" value="Angola">Angola</option>
+        <option class="afrique" value="Bénin">Bénin</option>
+        <option class="afrique" value="Botswana">Botswana</option>
+        <option class="afrique" value="Burkina Faso">Burkina Faso</option>
+        <option class="afrique" value="Burundi">Burundi</option>
+        <option class="afrique" value="Cameroun">Cameroun</option>
+        <option class="afrique" value="Cap-Vert">Cap-Vert</option>
+        <option class="afrique" value="République centrafricaine">République centrafricaine</option>
+        <option class="afrique" value="Comores">Comores</option>
+        <option class="afrique" value="République démocratique du Congo">République démocratique du Congo</option>
+        <option class="afrique" value="République du Congo">République du Congo</option>
+        <option class="afrique" value="Côte d'Ivoire">Côte d'Ivoire</option>
+        <option class="afrique" value="Djibouti">Djibouti</option>
+        <option class="afrique" value="Égypte">Égypte</option>
+        <option class="afrique" value="Érythrée">Érythrée</option>
+        <option class="afrique" value="Eswatini">Eswatini</option>
+        <option class="afrique" value="Éthiopie">Éthiopie</option>
+        <option class="afrique" value="Gabon">Gabon</option>
+        <option class="afrique" value="Gambie">Gambie</option>
+        <option class="afrique" value="Ghana">Ghana</option>
+        <option class="afrique" value="Guinée">Guinée</option>
+        <option class="afrique" value="Guinée-Bissau">Guinée-Bissau</option>
+        <option class="afrique" value="Guinée équatoriale">Guinée équatoriale</option>
+        <option class="afrique" value="Kenya">Kenya</option>
+        <option class="afrique" value="Lesotho">Lesotho</option>
+        <option class="afrique" value="Libéria">Libéria</option>
+        <option class="afrique" value="Libye">Libye</option>
+        <option class="afrique" value="Madagascar">Madagascar</option>
+        <option class="afrique" value="Malawi">Malawi</option>
+        <option class="afrique" value="Mali">Mali</option>
+        <option class="afrique" value="Maroc">Maroc</option>
+        <option class="afrique" value="Maurice">Maurice</option>
+        <option class="afrique" value="Mauritanie">Mauritanie</option>
+        <option class="afrique" value="Mozambique">Mozambique</option>
+        <option class="afrique" value="Namibie">Namibie</option>
+        <option class="afrique" value="Niger">Niger</option>
+        <option class="afrique" value="Nigeria">Nigeria</option>
+        <option class="afrique" value="Ouganda">Ouganda</option>
+        <option class="afrique" value="Rwanda">Rwanda</option>
+        <option class="afrique" value="São Tomé-et-Principe">São Tomé-et-Principe</option>
+        <option class="afrique" value="Sénégal">Sénégal</option>
+        <option class="afrique" value="Seychelles">Seychelles</option>
+        <option class="afrique" value="Sierra Leone">Sierra Leone</option>
+        <option class="afrique" value="Somalie">Somalie</option>
+        <option class="afrique" value="Soudan">Soudan</option>
+        <option class="afrique" value="Soudan du Sud">Soudan du Sud</option>
+        <option class="afrique" value="Tanzanie">Tanzanie</option>
+        <option class="afrique" value="Tchad">Tchad</option>
+        <option class="afrique" value="Togo">Togo</option>
+        <option class="afrique" value="Tunisie">Tunisie</option>
+        <option class="afrique" value="Zambie">Zambie</option>
+        <option class="afrique" value="Zimbabwe">Zimbabwe</option>
+
+         <!-- Amérique -->
+        <option class="amerique" value="Antigua-et-Barbuda">Antigua-et-Barbuda</option>
+        <option class="amerique" value="Argentine">Argentine</option>
+        <option class="amerique" value="Bahamas">Bahamas</option>
+        <option class="amerique" value="Barbade">Barbade</option>
+        <option class="amerique" value="Belize">Belize</option>
+        <option class="amerique" value="Bolivie">Bolivie</option>
+        <option class="amerique" value="Brésil">Brésil</option>
+        <option class="amerique" value="Canada">Canada</option>
+        <option class="amerique" value="Chili">Chili</option>
+        <option class="amerique" value="Colombie">Colombie</option>
+        <option class="amerique" value="Costa Rica">Costa Rica</option>
+        <option class="amerique" value="Cuba">Cuba</option>
+        <option class="amerique" value="République dominicaine">République dominicaine</option>
+        <option class="amerique" value="Dominique">Dominique</option>
+        <option class="amerique" value="Équateur">Équateur</option>
+        <option class="amerique" value="États-Unis">États-Unis</option>
+        <option class="amerique" value="Grenade">Grenade</option>
+        <option class="amerique" value="Guatemala">Guatemala</option>
+        <option class="amerique" value="Guyana">Guyana</option>
+        <option class="amerique" value="Haïti">Haïti</option>
+        <option class="amerique" value="Honduras">Honduras</option>
+        <option class="amerique" value="Jamaïque">Jamaïque</option>
+        <option class="amerique" value="Mexique">Mexique</option>
+        <option class="amerique" value="Nicaragua">Nicaragua</option>
+        <option class="amerique" value="Panama">Panama</option>
+        <option class="amerique" value="Paraguay">Paraguay</option>
+        <option class="amerique" value="Pérou">Pérou</option>
+        <option class="amerique" value="Saint-Christophe-et-Niévès">Saint-Christophe-et-Niévès</option>
+        <option class="amerique" value="Sainte-Lucie">Sainte-Lucie</option>
+        <option class="amerique" value="Saint-Vincent-et-les-Grenadines">Saint-Vincent-et-les-Grenadines</option>
+        <option class="amerique" value="Salvador">Salvador</option>
+        <option class="amerique" value="Suriname">Suriname</option>
+        <option class="amerique" value="Trinité-et-Tobago">Trinité-et-Tobago</option>
+        <option class="amerique" value="Uruguay">Uruguay</option>
+        <option class="amerique" value="Venezuela">Venezuela</option>
+
+
+
+         <!-- Asie -->
+        <option class="asie" value="Afghanistan">Afghanistan</option>
+        <option class="asie" value="Arabie saoudite">Arabie saoudite</option>
+        <option class="asie" value="Arménie">Arménie</option>
+        <option class="asie" value="Azerbaïdjan">Azerbaïdjan</option>
+        <option class="asie" value="Bahreïn">Bahreïn</option>
+        <option class="asie" value="Bangladesh">Bangladesh</option>
+        <option class="asie" value="Bhoutan">Bhoutan</option>
+        <option class="asie" value="Birmanie">Birmanie (Myanmar)</option>
+        <option class="asie" value="Brunei">Brunei</option>
+        <option class="asie" value="Cambodge">Cambodge</option>
+        <option class="asie" value="Chine">Chine</option>
+        <option class="asie" value="Corée du Nord">Corée du Nord</option>
+        <option class="asie" value="Corée du Sud">Corée du Sud</option>
+        <option class="asie" value="Émirats arabes unis">Émirats arabes unis</option>
+        <option class="asie" value="Géorgie">Géorgie</option>
+        <option class="asie" value="Inde">Inde</option>
+        <option class="asie" value="Indonésie">Indonésie</option>
+        <option class="asie" value="Irak">Irak</option>
+        <option class="asie" value="Iran">Iran</option>
+        <option class="asie" value="Israël">Israël</option>
+        <option class="asie" value="Japon">Japon</option>
+        <option class="asie" value="Jordanie">Jordanie</option>
+        <option class="asie" value="Kazakhstan">Kazakhstan</option>
+        <option class="asie" value="Kirghizistan">Kirghizistan</option>
+        <option class="asie" value="Koweït">Koweït</option>
+        <option class="asie" value="Laos">Laos</option>
+        <option class="asie" value="Liban">Liban</option>
+        <option class="asie" value="Malaisie">Malaisie</option>
+        <option class="asie" value="Maldives">Maldives</option>
+        <option class="asie" value="Mongolie">Mongolie</option>
+        <option class="asie" value="Népal">Népal</option>
+        <option class="asie" value="Oman">Oman</option>
+        <option class="asie" value="Ouzbékistan">Ouzbékistan</option>
+        <option class="asie" value="Pakistan">Pakistan</option>
+        <option class="asie" value="Palestine">Palestine</option>
+        <option class="asie" value="Philippines">Philippines</option>
+        <option class="asie" value="Qatar">Qatar</option>
+        <option class="asie" value="Russie">Russie</option>
+        <option class="asie" value="Singapour">Singapour</option>
+        <option class="asie" value="Sri Lanka">Sri Lanka</option>
+        <option class="asie" value="Syrie">Syrie</option>
+        <option class="asie" value="Tadjikistan">Tadjikistan</option>
+        <option class="asie" value="Taïwan">Taïwan</option>
+        <option class="asie" value="Thaïlande">Thaïlande</option>
+        <option class="asie" value="Timor oriental">Timor oriental</option>
+        <option class="asie" value="Turkménistan">Turkménistan</option>
+        <option class="asie" value="Turquie">Turquie</option>
+        <option class="asie" value="Viêt Nam">Viêt Nam</option>
+        <option class="asie" value="Yémen">Yémen</option>
+
+      </select>
+      <br><br>
+
+     
+
 
     <h6>
-      <p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.
-      </p>
+      <p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.</p>
     </h6><br>
 
-    
-
-    <!-- Bouton d'inscription au site web -->
-    <input type="submit" value="Continuer">
+    <input type="submit" value="Enregistrer">
   </form>
-  
 </body>
-
 
 </html>
