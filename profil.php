@@ -41,7 +41,7 @@ if ($resultat->rowCount() > 0) {
     <p><strong>Date de Naissance:</strong> <?php echo $utilisateur['DateNaissance']; ?></p>
     <p><strong>Centre d'intérêt:</strong> <?php echo $utilisateur['Centre_interet']; ?></p>
     <p><strong>Pays visités:</strong> <?php echo $utilisateur['Pays_visite']; ?></p>
-    <p><strong>Pays à visiter:</strong> <?php echo $utilisateur['Pays_a_visiter']; ?></p>
+    <p><strong>BIO</strong> <?php echo $utilisateur['Bio']; ?></p>
     <!-- Ajoutez ici d'autres informations que vous souhaitez afficher -->
     <footer></footer>
 </body>
