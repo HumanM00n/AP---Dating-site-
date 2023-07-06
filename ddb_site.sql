@@ -1,13 +1,13 @@
 CREATE DATABASES Adopte_GT
 
 CREATE TABLE Utilisateur(
-   ID_utilisateur VARCHAR(200),
+   ID_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
    Nom VARCHAR(200) NOT NULL,
    Prenom VARCHAR(200) NOT NULL,
    Pseudo VARCHAR(200) NOT NULL,
    Genre VARCHAR(200) NOT NULL,
    Email VARCHAR(200) NOT NULL,
-   Téléphone VARCHAR(200) NOT NULL,
+   Telephone VARCHAR(200) NOT NULL,
    Photo BLOB,
    Centre_interet VARCHAR(200),
    Pays_visite VARCHAR(200),
