@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Profil</title>
+</head>
+
+<body>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 5px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <h1>Informations Utilisateur</h1>
+    
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Pseudo</th>
+            <th>Genre</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Date de Naissance</th>
+            <th>Centre d'intérêt</th>
+            <th>Pays visités</th>
+            <th>Pays à visiter</th>
+        </tr>
+        
+        <?php include_once('recuperation.php'); ?>
+        
+    </table>
+
+</body>
+
+
+</html>
