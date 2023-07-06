@@ -4,7 +4,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "site-rencontre";
+$dbname = "siterencontre";
 
 try {
     $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -37,7 +37,7 @@ if ($resultat->rowCount() > 0) {
     <p><strong>Prénom:</strong> <?php echo $utilisateur['Prenom']; ?></p>
     <p><strong>Genre:</strong> <?php echo $utilisateur['Genre']; ?></p>
     <p><strong>Email:</strong> <?php echo $utilisateur['Email']; ?></p>
-    <p><strong>Téléphone:</strong> <?php echo $utilisateur['Téléphone']; ?></p>
+    <p><strong>Téléphone:</strong> <?php echo $utilisateur['Telephone']; ?></p>
     <p><strong>Date de Naissance:</strong> <?php echo $utilisateur['DateNaissance']; ?></p>
     <p><strong>Centre d'intérêt:</strong> <?php echo $utilisateur['Centre_interet']; ?></p>
     <p><strong>Pays visités:</strong> <?php echo $utilisateur['Pays_visite']; ?></p>
