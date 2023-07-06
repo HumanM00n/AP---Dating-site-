@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $paysVisite = $_POST['paysVisite'];
 
         // Construction de la requête SQL d'insertion
-        $sql = "INSERT INTO Utilisateur (Nom, Prenom, Pseudo, Genre, DateNaissance, Telephone, Email, Centre_interet,Bio,pays_visite)
+        $sql = "INSERT INTO Utilisateur (Nom, Prenom, Pseudo, Genre, DateNaissance, Telephone, Email, Centre_interet, Bio, pays_visite)
                 VALUES (:nom, :prenom, :pseudo, :sexe, :dateNaissance, :telephone, :email, :centresInteret, :bio, :paysVisite)";
 
         // Préparation de la requête
