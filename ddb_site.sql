@@ -12,7 +12,7 @@ CREATE TABLE Utilisateur(
    Photo BLOB,
    Centre_interet VARCHAR(200),
    Pays_visite VARCHAR(200),
-   Bio VARCHAR(200)
+   Bio VARCHAR(255)
 );
 
 CREATE TABLE Discussion(
