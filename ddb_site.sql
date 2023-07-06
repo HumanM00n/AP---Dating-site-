@@ -7,11 +7,12 @@ CREATE TABLE Utilisateur(
    Pseudo VARCHAR(200) NOT NULL,
    Genre VARCHAR(200) NOT NULL,
    Email VARCHAR(200) NOT NULL,
+   DateNaissance DATE NOT NULL,
    Telephone VARCHAR(200) NOT NULL,
    Photo BLOB,
    Centre_interet VARCHAR(200),
    Pays_visite VARCHAR(200),
-   Pays_a_visiter VARCHAR(200) NOT NULL
+   Pays_a_visiter VARCHAR(200)
 );
 
 CREATE TABLE Discussion(
