@@ -1,0 +1,228 @@
+#content {
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: calc(100vh - 2 * (20px + 10px)); /* Ajustement de la hauteur du contenu en soustrayant la hauteur des barres de navigation en haut et en bas */
+    overflow-y: auto; /* Ajout d'une barre de défilement verticale uniquement si nécessaire */
+  }
+
+#boite {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px; /* Ajout marge en haut */
+  margin-bottom: 20px; /* Ajout marge en bas */
+  padding: 20px 5%; /* Ajoute espacement autour des paragraphes */
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+  
+  #boite .promesse {
+    margin: 20px 5%; /* Ajusttement de l'espacement entre les paragraphes */
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+    text-align: justify;
+    -webkit-margin-start: 5%;
+    -webkit-margin-end: 5%;
+  }
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  background-image: url('../image/Wallpaper.png');
+  background-size: cover;
+}
+
+#header {
+  background-color: #fdeada;
+  text-align: center;
+  padding: 20px;
+}
+
+#logo {
+  float: left;
+}
+
+/*barre de nav */
+#navigation {
+  text-align: center;
+}
+
+#navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navigation ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#navigation ul li a {
+  color: #8b4513;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+  z-index: 1;
+}
+
+#navigation ul li a:hover {
+  background-color: #8b4513;
+  color: white;
+  transform: scale(1.05);
+}
+
+#navigation ul li a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+  transition: background-color 0.3s;
+}
+
+#navigation ul li a:hover:before {
+  background-color: #8b4513;
+}
+
+#content {
+  text-align: center;
+  padding: 50px;
+  color: #472206;
+}
+
+#avion {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(0, calc(100vh - 100%)) scale(0.4);
+  transition: transform 2s linear;
+}
+
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#footer {
+  background-color: #fdeada;
+  text-align: center;
+  padding: 10px; /* Réduction de la valeur pour rendre le footer plus mince */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1; /* Ajout propriété pour placer la barre de navigation au-dessus du contenu */
+}
+
+#footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#footer ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#footer ul li a {
+  color: #8b4513;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+#footer ul li a:hover {
+  background-color: #8b4513;
+  color: white;
+  transform: scale(1.05);
+}
+
+#footer ul li a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+  transition: background-color 0.3s;
+}
+
+#footer ul li a:hover:before {
+  background-color: #8b4513;
+}
+
+#signup-button {
+  background-color: #fdeada;
+  color: #8b4513;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+#signup-button:hover {
+  transform: scale(1.05);
+}
+
+/* liens réseaux sociaux */
+#footer #social-media-section {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+#footer #social-media-section ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#footer #social-media-section ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#footer #social-media-section ul li a {
+  display: inline-block;
+  color: #472206;
+  background-color: #fdeada;
+  padding: 15px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#footer #social-media-section ul li a:hover {
+  color: white;
+  background-color: #472206;
+}
+
+/* Centrer la barre de navigation du footer */
+#footer ul {
+  text-align: center;
+}

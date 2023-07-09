@@ -1,10 +1,9 @@
-// Connexion a la base de donnée ATTENTION ici la base de donnée est appler siterencontre a vous de la changer en fonction de comment vous l'avez appeler 
 <?php
-// Connexion à la base de données
+// Connexion à la base de données site-rencontre
 $host = 'localhost';
 $dbname = 'siterencontre';
 $username = 'root';
-$password = ''; // Remplacez "votre_mot_de_passe" par le mot de passe de votre base de données
+$password = ''; 
 
 try {
     $connexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, [

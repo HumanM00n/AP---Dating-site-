@@ -1,0 +1,142 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fdeada;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  #form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  #header {
+    position : fixed;
+    top: 0;
+    left: 0;
+    width : 100%;
+    background-color : #fdeada;
+    text-align : center;
+    padding: 20px;
+  }
+  
+  #logo {
+    float: left;
+  }
+  
+  #navigation {
+    text-align: center;
+  }
+  
+  #navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #navigation ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  #navigation ul li a {
+    color: #8b4513;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 10px;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1;
+  }
+  
+  #navigation ul li a:hover {
+    background-color: #8b4513;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  #navigation ul li a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: -1;
+    transition: background-color 0.3s;
+  }
+  
+  #navigation ul li a:hover:before {
+    background-color: #8b4513;
+  }
+  
+  #footer {
+    background-color: #fdeada;
+    text-align: center;
+    padding: 10px;
+    position : fixed;
+    top: 0;
+    left: 0;
+    width : 100%
+  }
+  
+  #footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #footer ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  #footer ul li a {
+    color: #8b4513;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 10px;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  #footer ul li a:hover {
+    background-color: #8b4513;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  #footer ul li a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: -1;
+    transition: background-color 0.3s;
+  }
+  
+  #footer ul li a:hover:before {
+    background-color: #8b4513;
+  }
+  
