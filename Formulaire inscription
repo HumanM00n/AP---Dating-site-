@@ -1,60 +1,60 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "siterencontre";
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "siterencontre";
 
-    try {
-        // Connexion à la base de données avec PDO
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  try {
+    // Connexion à la base de données avec PDO
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Récupération des données du formulaire
-        $prenom = $_POST['prenom'];
-        $nom = $_POST['nom'];
-        $pseudo = $_POST['pseudo'];
-        $sexe = $_POST['sexe'];
-        $dateNaissance = $_POST['dateNaissance'];
-        $telephone = $_POST['telephone'];
-        $email = $_POST['email'];
-        $centresInteret = implode(", ", $_POST['interests']); // Convertit les centres d'intérêt en une chaîne de caractères séparée par des virgules
-        $bio = $_POST['bio'];
-        $paysVisite = $_POST['paysVisite'];
+    // Récupération des données du formulaire
+    $prenom = $_POST['prenom'];
+    $nom = $_POST['nom'];
+    $pseudo = $_POST['pseudo'];
+    $sexe = $_POST['sexe'];
+    $dateNaissance = $_POST['dateNaissance'];
+    $telephone = $_POST['telephone'];
+    $email = $_POST['email'];
+    $centresInteret = implode(", ", $_POST['interests']); // Convertit les centres d'intérêt en une chaîne de caractères séparée par des virgules
+    $bio = $_POST['bio'];
+    $paysVisite = $_POST['paysVisite'];
 
-        // Construction de la requête SQL d'insertion
-        $sql = "INSERT INTO Utilisateur (Nom, Prenom, Pseudo, Genre, DateNaissance, Telephone, Email, Centre_interet, Bio, pays_visite)
+    // Construction de la requête SQL d'insertion
+    $sql = "INSERT INTO Utilisateur (Nom, Prenom, Pseudo, Genre, DateNaissance, Telephone, Email, Centre_interet, Bio, pays_visite)
                 VALUES (:nom, :prenom, :pseudo, :sexe, :dateNaissance, :telephone, :email, :centresInteret, :bio, :paysVisite)";
 
-        // Préparation de la requête
-        $stmt = $conn->prepare($sql);
+    // Préparation de la requête
+    $stmt = $conn->prepare($sql);
 
-        // Liaison des valeurs des paramètres
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':prenom', $prenom);
-        $stmt->bindParam(':pseudo', $pseudo);
-        $stmt->bindParam(':sexe', $sexe);
-        $stmt->bindParam(':dateNaissance', $dateNaissance);
-        $stmt->bindParam(':telephone', $telephone);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':centresInteret', $centresInteret);
-        $stmt->bindParam(':bio', $bio);
-        $stmt->bindParam(':paysVisite', $paysVisite);
-        
+    // Liaison des valeurs des paramètres
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':pseudo', $pseudo);
+    $stmt->bindParam(':sexe', $sexe);
+    $stmt->bindParam(':dateNaissance', $dateNaissance);
+    $stmt->bindParam(':telephone', $telephone);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':centresInteret', $centresInteret);
+    $stmt->bindParam(':bio', $bio);
+    $stmt->bindParam(':paysVisite', $paysVisite);
 
-        // Exécution de la requête
-        $stmt->execute();
 
-        // Redirection vers la page profil.php
-        header("Location: profil.php");
-        exit(); // Assurez-vous d'utiliser exit() après la redirection pour arrêter l'exécution du script
+    // Exécution de la requête
+    $stmt->execute();
 
-    } catch (PDOException $e) {
-        echo "Erreur lors de l'inscription : " . $e->getMessage();
-    }
+    // Redirection vers la page profil.php
+    header("Location: profil.php");
+    exit(); // Assurez-vous d'utiliser exit() après la redirection pour arrêter l'exécution du script
 
-    // Fermeture de la connexion à la base de données
-    $conn = null;
+  } catch (PDOException $e) {
+    echo "Erreur lors de l'inscription : " . $e->getMessage();
+  }
+
+  // Fermeture de la connexion à la base de données
+  $conn = null;
 }
 ?>
 
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <!-- Formulaire d'inscription -->
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-    <h3>Qui suis-je ?</h3>
+    <h3>Mes informations ?</h3>
     <div class="identifiants">
       <label for="prenom">Mon prénom*</label>
       <input type="text" id="prenom" name="prenom" required><br><br>
@@ -90,12 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <label for="pseudo">Mon pseudo</label>
       <input type="text" id="pseudo" name="pseudo" required><br>
-      <h6>C'est ainsi queles autres te verront</h6>
+      <!-- <h6>C'est ainsi queles autres te verront</h6> -->
     </div>
     <br>
 
-    <h3>Qui je suis ?</h3>
+
     <div class="informations">
+      <h3>Qui je suis ?</h3>
       <input type="radio" id="homme" name="sexe" value="homme">
       <label for="homme">Un homme</label>
 
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label for="femme">Une femme</label>
 
       <input type="radio" id="nonPrecise" name="sexe" value="nonPrecise">
-      <label for="nonPrecise">Je préfère ne pas préciser</label><br><br>
+      <label for="nonPrecise">Ne pas préciser</label><br><br>
 
       <label for="dateNaissance">Ma date de naissance :</label>
       <input type="date" id="dateNaissance" name="dateNaissance" required><br><br>
@@ -119,63 +120,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <label for="paysVisite">Là où j'ai voyagé</label>
       <input type="text" id="paysVisite" name="paysVisite" required><br>
-      
+
     </div>
-    <h2> Mes centres d'interet</h2>
+
     <div class="checkbox-row">
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="sport"> Sport
-            </label>
-            
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="jeuxvideo"> Jeux vidéo
-            </label>
-            
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="cuisine"> Cuisine
-            </label>
+      <h2> Mes Centres d'interet</h2>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="sport"> Sport
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="jeuxvideo"> Jeux vidéo
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="cuisine"> Cuisine
+          </label>
         </div>
-        
-        <div class="checkbox-row">
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="voyager"> Voyager
-            </label>
-            
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="dessiner"> Dessiner
-            </label>
-            
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="lire"> Lire
-            </label>
+      </div>
+
+
+      <!-- <div class="checkbox-row">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="voyager"> Voyager
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="dessiner"> Dessiner
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="lire"> Lire
+          </label>
         </div>
-        
-        <div class="checkbox-row">
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="sortir"> Sortir avec des amis
-            </label>
-            
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="cinema"> Aller au cinéma
-            </label>
-            
-            <label class="checkbox-label">
-                <input type="checkbox" name="interests[]" value="maison"> Netflix and chill
-            </label>
+      </div>
+
+      <div class="checkbox-row">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="sortir"> Sortir avec des amis
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="cinema"> Aller au cinéma
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="interests[]" value="maison"> Netflix and chill
+          </label>
         </div>
-        
-    
+      </div> -->
+
+
       <br><br>
 
-     
+      <h6>
+        <!-- <p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.</p> -->
+      </h6><br>
 
-
-    <h6>
-      <p>Ne vous inquiétez pas, tous les champs marqués par une "*" ne seront pas visibles par les autres utilisateurs.</p>
-    </h6><br>
-
-    <input type="submit" value="Enregistrer">
+      <input type="submit" value="Enregistrer">
   </form>
+
 </body>
 
 </html>
