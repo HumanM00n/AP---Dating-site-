@@ -1,4 +1,6 @@
-CREATE DATABASE Adopte_GT
+CREATE DATABASE Adopte_GT;
+
+use adopte_gt;
 
 CREATE TABLE Utilisateur(
    ID_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
